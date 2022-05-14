@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+string compress_string(string S)
+{
+    int n = S.size();
+    string O;
+    for (int i = 0; i < n; i++)
+    {
+        int count = 1;
+        while (i < n - 1 && S[i + 1] == S[i])
+        {
+            count++;
+            i++;
+        }
+        O += S[i];
+        O += to_string(count);
+    }
+    if (S.length() < O.length())
+    {
+        return S;
+    }
+    else
+    {
+        return O;
+    }
+}
+int main()
+{
+    string S;
+    getline(cin, S);
+    cout << compress_string(S);
+    return 0;
+}
