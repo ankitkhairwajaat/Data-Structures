@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+using namespace std;
+int getibit(int n, int i)
+{
+    int mask = (1 << i);
+    return (n & mask);
+}
+
+void setibit(int &n, int i)
+{
+    int mask = (1 << i);
+    n = (n | mask);
+}
+
+void clearibit(int &n, int i)
+{
+    int mask = ~(1 << i);
+    n = n & mask;
+}
+
+void updateibit(int &n, int i)
+{
+    int mask = (1 << i);
+    n = n ^ mask;
+}
+
+void clearlastibits(int &n, int i)
+{
+    int marks = (-1 << i);
+    n = (n & marks);
+}
+
+void clearinrange(int &n,int i,int j)
+{
+  int jar=(-1<<j+1);
+  int cab=(1<<i)-1;
+
+  int mask=jar|cab;
+  n=n&mask;
+}
+
+
+
+int main()
+{
+    int n;
+    cin >> n;
+    int i;
+    int j;
+    cin >> i;
+    cin >> j;
+
+  clearinrange(n,i,j);
+    cout << n;
+    return 0;
+}
