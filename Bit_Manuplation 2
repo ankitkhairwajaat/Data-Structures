@@ -1,0 +1,156 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int getibit(int n, int i)
+{
+    int mask = (1 << i);
+    return (n & mask);
+}
+
+void setibit(int &n, int i)
+{
+    int mask = (1 << i);
+    n = (n | mask);
+}
+
+void clearibit(int &n, int i)
+{
+    int mask = ~(1 << i);
+    n = n & mask;
+}
+
+void updateibit(int &n, int i)
+{
+    int mask = (1 << i);
+    n = n ^ mask;
+}
+
+void clearlastibits(int &n, int i)
+{
+    int marks = (-1 << i);
+    n = (n & marks);
+}
+
+void clearinrange(int &n, int i, int j)
+{
+    int jar = (-1 << j + 1);
+    int cab = (1 << i) - 1;
+
+    int mask = jar | cab;
+    n = n & mask;
+}
+
+void ReplaceBits(int &n, int &m, int i, int j)
+{
+    clearinrange(n, i, j);
+    int ccj = (m << i);
+    n = n | ccj;
+}
+
+int countBits(int n)
+{
+    int count = 0;
+    while (n > 0)
+    {
+        int lastdigit = (n & 1);
+        count += lastdigit;
+        n = (n >> 1);
+    }
+    return count;
+}
+
+void twopower(int &n)
+{
+    if ((n & (n - 1)) == 0)
+    {
+        cout << "power of two";
+    }
+    else
+    {
+        cout << "Not power of two";
+    }
+}
+
+int main()
+{
+    while(1)
+    {
+    int n, m, i, j;
+    cout << "Number";
+    cin >> n;
+    cout << "range";
+    cin >> i >> j;
+    cout << "Replacing number";
+    cin >> m;
+    cout << "What you wnat to do : " << endl;
+    cout << endl;
+    cout << "1. Get bit" << endl;
+    cout << "2. Set bit" << endl;
+    cout << "3. clear bit" << endl;
+    cout << "4. Update bit" << endl;
+    cout << "5. Clear last bits" << endl;
+    cout << "6. clear in Range" << endl;
+    cout << "7. Replace bits" << endl;
+    cout << "8. count bits" << endl;
+    cout << "9. Two power" << endl;
+
+    int x;
+    cin >> x;
+
+    switch (x)
+    {
+    case 1:
+        cout << getibit(n, i);
+        break;
+
+    case 2:
+
+        setibit(n, i);
+        cout << n << endl;
+        break;
+
+    case 3:
+
+        clearibit(n, i);
+        cout << n << endl;
+        break;
+
+    case 4:
+
+        updateibit(n, i);
+        cout << n << endl;
+        break;
+
+    case 5:
+
+        clearlastibits(n, i);
+        cout << n << endl;
+        break;
+
+    case 6:
+
+        clearinrange(n, i, j);
+        cout << n << endl;
+        break;
+
+    case 7:
+
+        ReplaceBits(n, m, i, j);
+        cout << n << endl;
+        break;
+
+    case 8:
+
+        cout<<countBits(n);
+        break;
+
+    case 9:
+
+        twopower(n);
+        
+        break;
+    }
+    cout<<endl<<endl;
+    }
+    return 0;
+}
